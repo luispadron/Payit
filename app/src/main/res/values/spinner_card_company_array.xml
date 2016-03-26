@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="card_companies">
+        <item></item>
+        <item>American Express</item>
+        <item>Bank of America</item>
+        <item>BarclayCard</item>
+        <item>Capital One</item>
+        <item>Chase</item>
+        <item>Citibank</item>
+        <item>Discover</item>
+        <item>MasterCard</item>
+        <item>PNC</item>
+        <item>USAA</item>
+        <item>U.S. Bank</item>
+        <item>Visa</item>
+        <item>Wells Fargo</item>
+    </string-array>
+</resources>

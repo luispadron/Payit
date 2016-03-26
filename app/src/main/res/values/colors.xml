@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#03A9F4</color>
+    <color name="colorPrimaryLight">#B3E5FC</color>
+    <color name="colorPrimaryDark">#0288D1</color>
+    <color name="colorAccent">#FFEB3B</color>
+    <color name="colorAccentLight">#FFEB71</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="colorPrimaryBackground">#F9F9F9</color>
+    <color name="colorCardDisplayBackground">#E8E8E8</color>
+    <color name="black_transparent">#33000000</color>
+
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#727272</color>
+
+    <color name="colorDivider">#B6B6B6</color>
+
+    <!-- For floating actions menu -->
+    <color name="black_semi_transparent">#B2000000</color>
+    <color name="background">#e5e5e5</color>
+    <color name="half_black">#808080</color>
+
+    <color name="dim_blur">#80FFFFFF</color>
+
+    <!-- Colors used for the card views, all grabbed from http://www.lolcolors.com/ -->
+    <color name="color1">#ff7473</color>
+    <color name="color2">#ffc952</color>
+    <color name="color3">#47b8e0</color>
+    <color name="color4">#1ec0ff</color>
+    <color name="color5">#26C6DA</color>
+    <color name="color6">#FF6E40</color>
+    <color name="color7">#A593E0</color>
+    <color name="color8">#7E57C2</color>
+    <color name="color9">#2EC4B6</color>
+    <color name="color10">#F6B352</color>
+    <color name="color11">#9575CD</color>
+    <color name="color12">#00dffc</color>
+    <color name="color13">#fe4365</color>
+    <color name="color14">#00E676</color>
+    <color name="color15">#e94e77</color>
+    <color name="color16">#feee7d</color>
+    <color name="color17">#ff4e50</color>
+    <color name="color18">#7f9eb2</color>
+    <color name="color19">#3D5AFE</color>
+    <color name="color20">#8EC0E4</color>
+</resources>

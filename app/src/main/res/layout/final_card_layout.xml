@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="320dp"
+    android:layout_height="200dp"
+    android:background="@drawable/dialog_background"
+    android:visibility="gone"
+    android:id="@+id/final_confirm_card_layout">
+
+    <lpadron.me.project1_payit.views.RalewayTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Confirm new card"
+        android:layout_marginTop="10dp"
+        android:textAllCaps="true"
+        android:letterSpacing=".1"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="22sp"
+        android:id="@+id/confirm_card_title"
+        android:textColor="@color/white"
+        android:elevation="3dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"/>
+
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@+id/confirm_card_title"
+        android:id="@+id/confirm_card_linear_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Card name: "
+                android:layout_weight="1"
+                android:id="@+id/final_card_name"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Due day: "
+                android:layout_weight="1"
+                android:id="@+id/final_due_day"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount on card: "
+                android:layout_weight="1"
+                android:id="@+id/final_amnt_on_card"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interest rate: "
+                android:layout_weight="1"
+                android:id="@+id/final_interest_rate"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Issuing bank: "
+                android:layout_weight="1"
+                android:id="@+id/final_issuing_bank"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
