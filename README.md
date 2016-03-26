@@ -21,9 +21,9 @@ I decided to try and build an app that would allow me to customize these notific
 
 ## Screenshots
 
-<img src="https://github.com/luispadron/Twelve-Months-of-Apps/blob/master/assets/images/project-1-screen-1.png" width="275">
-<img src="https://github.com/luispadron/Twelve-Months-of-Apps/blob/master/assets/images/project-1-screen-2.png" width="275">
-<img src="https://github.com/luispadron/Twelve-Months-of-Apps/blob/master/assets/images/project-1-screen-3.png" width="275">
+<img src="https://github.com/luispadron/Payit/blob/master/github%20assets/images/project-1-screen-1.png" width="275">
+<img src="https://github.com/luispadron/Payit/blob/master/github%20assets/images/project-1-screen-2.png" width="275">
+<img src="https://github.com/luispadron/Payit/blob/master/github%20assets/images/project-1-screen-3.png" width="275">
 
 
 ## Demo (Try it yourself!)
