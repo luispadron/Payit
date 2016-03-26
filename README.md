@@ -1,5 +1,3 @@
-## Payit
-
 ![Payit](https://github.com/luispadron/12-Months-of-Apps/blob/master/assets/images/project1-banner.png)
 
 <hr>
