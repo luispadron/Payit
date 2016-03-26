@@ -10,7 +10,7 @@
 
 The idea for __Payit__ occurred to me when I missed a payment on one of my credit cards (oops). Basically, I wanted an application that would notify me a day or two before my card was due, sure my credit cards already sent me e-mails but I would never read them or they would send me the reminder a week in advance, and who remembers that? 
 
-So for the first month in this "software challenge" I decided to try and build an app that would allow me to customize these notifications and as an added bonus would try and give me a recommended payment amount (some wonky math with interest, blah, blah). All the while learning more and more Android development concepts as well as becoming a better designer (I'm pretty bad right now).
+I decided to try and build an app that would allow me to customize these notifications and as an added bonus would try and give me a recommended payment amount (some wonky math with interest, blah, blah). All the while learning more and more Android development concepts as well as becoming a better designer (I'm pretty bad right now).
 
 ### Stuff being worked on currently
 1. Getting actual notifications, without having to have the user explicitly change their security settings, thanks _NotificationListenerService_...
