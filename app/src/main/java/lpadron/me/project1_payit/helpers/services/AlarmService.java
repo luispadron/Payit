@@ -12,6 +12,7 @@ import android.support.v4.app.NotificationCompat;
 import lpadron.me.project1_payit.R;
 import lpadron.me.project1_payit.controllers.MainActivity;
 import lpadron.me.project1_payit.models.CardReminder;
+import lpadron.me.project1_payit.models.NotificationCreator;
 
 /**
  * Project1-Payit
@@ -27,11 +28,11 @@ public class AlarmService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         cardReminder = intent.getParcelableExtra(MainActivity.CARD_REMINDER_PARCELABLE);
-        createNotification();
+        displayNotification();
         return Service.START_NOT_STICKY;
     }
 
-    private void createNotification() {
+    private void displayNotification() {
         Intent resultIntent = new Intent(this.getApplicationContext(), MainActivity.class);
 
         // Create the notification
@@ -54,6 +55,9 @@ public class AlarmService extends Service {
         NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         notificationManager.notify(notificationId, builder.build());
+
+        // After displaying notification, create a new notification
+        NotificationCreator.createNotification(this, cardReminder);
     }
 
     @Nullable

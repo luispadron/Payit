@@ -1,8 +1,5 @@
 package lpadron.me.project1_payit.controllers;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -24,7 +21,6 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import butterknife.Bind;
@@ -35,12 +31,12 @@ import lpadron.me.project1_payit.helpers.interfaces.OnCardRemindersDataChanged;
 import lpadron.me.project1_payit.helpers.interfaces.OnNewCardAnimateOut;
 import lpadron.me.project1_payit.helpers.interfaces.OnPassCardReminder;
 import lpadron.me.project1_payit.helpers.interfaces.RecyclerViewUpdater;
-import lpadron.me.project1_payit.helpers.services.AlarmBroadcastReceiver;
 import lpadron.me.project1_payit.models.CardReminder;
+import lpadron.me.project1_payit.models.NotificationCreator;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnPassCardReminder,
-        OnNewCardAnimateOut, OnCardRemindersDataChanged  {
+        OnNewCardAnimateOut, OnCardRemindersDataChanged {
 
     @Bind(R.id.toolbar) Toolbar toolbar;
     @Bind(R.id.nav_view) NavigationView navigationView;
@@ -206,30 +202,9 @@ public class MainActivity extends AppCompatActivity
         RecyclerViewUpdater recyclerViewUpdater = mainFragment;
         recyclerViewUpdater.onUpdateRecyclerViewNeeded(cardReminders);
         saveFirstTimeRanState();
-    }
 
-    private void createNotificationForCard(CardReminder cardReminder) {
-        Calendar calendar = Calendar.getInstance();
-
-        //Split string
-        String[] split = cardReminder.getFullDateFromDayFormattedForNotification().split("/");
-
-        // Set the date for the notification
-        calendar.set(Calendar.MONTH, Integer.parseInt(split[0]) - 1);
-        calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(split[1]));
-        calendar.set(Calendar.YEAR, Integer.parseInt(split[2]));
-        calendar.set(Calendar.HOUR_OF_DAY, CardReminder.HOUR_FOR_NOTIFICATION);
-        calendar.set(Calendar.MINUTE, CardReminder.MINUTE_FOR_NOTIFICATION);
-        calendar.set(Calendar.SECOND, 0);
-        calendar.set(Calendar.AM_PM, Calendar.PM);
-
-        Intent intent = new Intent(this, AlarmBroadcastReceiver.class);
-        intent.putExtra(CARD_REMINDER_PARCELABLE, cardReminder);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);
-
+        // Create notification for card
+        NotificationCreator.createNotification(this, cardReminder);
     }
 
     private void saveCardReminders() {

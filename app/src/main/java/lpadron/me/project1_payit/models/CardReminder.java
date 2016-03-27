@@ -91,10 +91,11 @@ public class CardReminder implements Parcelable {
     }
 
     public String getFullDateFromDayAsString() {
-        int month;
+        int month, day;
 
         Calendar phoneCalendar = Calendar.getInstance();
         month = phoneCalendar.get(Calendar.MONTH);
+        day = phoneCalendar.get(Calendar.DAY_OF_MONTH);
 
         Calendar appCalendar = Calendar.getInstance();
 
@@ -113,32 +114,45 @@ public class CardReminder implements Parcelable {
             dueDate = appCalendar.getTime();
         }
 
-        String dateS = dueDate.toString();
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE MMM d");
 
+        String dateS = formatter.format(dueDate);
 
-        return dateS.substring(0, 10);
+        if (dueDay == day) {
+            dateS = "Payment due today!";
+        }
+
+        return dateS;
     }
 
     public String getFullDateFromDayFormattedForNotification() {
-        int month;
+        int currentMonth, currentDay, currentYear;
 
         Calendar phoneCalendar = Calendar.getInstance();
-        month = phoneCalendar.get(Calendar.MONTH);
+        currentMonth = phoneCalendar.get(Calendar.MONTH);
+        currentDay = phoneCalendar.get(Calendar.DAY_OF_MONTH);
+        currentYear = phoneCalendar.get(Calendar.YEAR);
+
 
         Calendar appCalendar = Calendar.getInstance();
 
 
-        appCalendar.set(Calendar.MONTH, month);
+        appCalendar.set(Calendar.MONTH, currentMonth);
         appCalendar.set(Calendar.DAY_OF_MONTH, dueDay);
+        appCalendar.set(Calendar.HOUR_OF_DAY, HOUR_FOR_NOTIFICATION);
+        appCalendar.set(Calendar.MINUTE, MINUTE_FOR_NOTIFICATION);
 
         Date currentDate = phoneCalendar.getTime();
         Date dueDate = appCalendar.getTime();
 
-        if (dueDate.before(currentDate)) {
-            if (month == 11) {
-                month = 0;
+        if (dueDate.before(currentDate) || currentDay == this.dueDay) {
+            if (currentMonth == 11) {
+                currentMonth = 0;
+                appCalendar.set(Calendar.MONTH, currentMonth);
+                appCalendar.set(Calendar.YEAR, currentYear + 1);
+            } else {
+                appCalendar.set(Calendar.MONTH, currentMonth + 1);
             }
-            appCalendar.set(Calendar.MONTH, month + 1);
             dueDate = appCalendar.getTime();
         }
 
