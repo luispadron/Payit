@@ -1,52 +1,39 @@
 package lpadron.me.project1_payit.controllers;
 
 import android.app.AlarmManager;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import android.preference.PreferenceManager;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import lpadron.me.project1_payit.helpers.NotificationListener;
+import lpadron.me.project1_payit.R;
 import lpadron.me.project1_payit.helpers.OnCardRemindersDataChanged;
 import lpadron.me.project1_payit.helpers.OnNewCardAnimateOut;
 import lpadron.me.project1_payit.helpers.OnPassCardReminder;
-import lpadron.me.project1_payit.R;
 import lpadron.me.project1_payit.helpers.RecyclerViewUpdater;
 import lpadron.me.project1_payit.models.CardReminder;
 
@@ -65,7 +52,6 @@ public class MainActivity extends AppCompatActivity
 
     public static final String CARD_REMINDERS = "CARD_REMINDERS";
     public static final String CARD_REMINDER_PARCELABLE = "CARD_REMINDERS_PARCALABLE";
-    private static final String MAIN_ACTIVITY_CONTEXT = "MAIN_ACTIVITY_CONTEXT";
     public static  boolean FIRST_TIME_RAN_NO_CARDS;
     private static final String FIRST_TIME_RAN_NO_CARDS_PREF = "FIRST_TIME_RAN_NO_CARDS";
 
@@ -115,10 +101,12 @@ public class MainActivity extends AppCompatActivity
         if (remindersJSON != null) {
             Type type = new TypeToken<List<CardReminder>>() {}.getType();
             cardReminders = gson.fromJson(remindersJSON, type);
-            if (cardReminders.size() < 1) {
+
+            if (cardReminders.isEmpty()) {
                 // User has deleted all cards
                 beginNewCardFragment();
             }
+
         } else {
             // First time app has been started
             beginNewCardFragment();
