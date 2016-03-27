@@ -1,10 +1,10 @@
-package lpadron.me.project1_payit.controllers;
+package lpadron.me.project1_payit.helpers.services;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import lpadron.me.project1_payit.helpers.AlarmService;
+import lpadron.me.project1_payit.controllers.MainActivity;
 import lpadron.me.project1_payit.models.CardReminder;
 
 /**

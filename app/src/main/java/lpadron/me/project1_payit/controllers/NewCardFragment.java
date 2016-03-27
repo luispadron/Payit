@@ -33,8 +33,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnEditorAction;
 import lpadron.me.project1_payit.R;
-import lpadron.me.project1_payit.helpers.OnNewCardAnimateOut;
-import lpadron.me.project1_payit.helpers.OnPassCardReminder;
+import lpadron.me.project1_payit.helpers.interfaces.OnNewCardAnimateOut;
+import lpadron.me.project1_payit.helpers.interfaces.OnPassCardReminder;
 import lpadron.me.project1_payit.models.CardReminder;
 import lpadron.me.project1_payit.helpers.OnSwipeTouchListener;
 

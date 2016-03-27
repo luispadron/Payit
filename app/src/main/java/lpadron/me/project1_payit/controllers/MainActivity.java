@@ -31,10 +31,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lpadron.me.project1_payit.R;
-import lpadron.me.project1_payit.helpers.OnCardRemindersDataChanged;
-import lpadron.me.project1_payit.helpers.OnNewCardAnimateOut;
-import lpadron.me.project1_payit.helpers.OnPassCardReminder;
-import lpadron.me.project1_payit.helpers.RecyclerViewUpdater;
+import lpadron.me.project1_payit.helpers.interfaces.OnCardRemindersDataChanged;
+import lpadron.me.project1_payit.helpers.interfaces.OnNewCardAnimateOut;
+import lpadron.me.project1_payit.helpers.interfaces.OnPassCardReminder;
+import lpadron.me.project1_payit.helpers.interfaces.RecyclerViewUpdater;
+import lpadron.me.project1_payit.helpers.services.AlarmBroadcastReceiver;
 import lpadron.me.project1_payit.models.CardReminder;
 
 public class MainActivity extends AppCompatActivity

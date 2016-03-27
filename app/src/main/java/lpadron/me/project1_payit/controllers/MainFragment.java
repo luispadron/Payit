@@ -9,13 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,8 +24,7 @@ import butterknife.ButterKnife;
 import lpadron.me.project1_payit.R;
 import lpadron.me.project1_payit.adapters.CardAdapter;
 import lpadron.me.project1_payit.helpers.ItemTouchHelperCallback;
-import lpadron.me.project1_payit.helpers.OnCardRemindersDataChanged;
-import lpadron.me.project1_payit.helpers.RecyclerViewUpdater;
+import lpadron.me.project1_payit.helpers.interfaces.RecyclerViewUpdater;
 import lpadron.me.project1_payit.models.CardReminder;
 
 public class MainFragment extends Fragment implements RecyclerViewUpdater {

@@ -3,6 +3,8 @@ package lpadron.me.project1_payit.helpers;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
+import lpadron.me.project1_payit.helpers.interfaces.ItemTouchHelperAdapter;
+
 /**
  * Project1-Payit
  * lpadron.me.project1_payit.helpers

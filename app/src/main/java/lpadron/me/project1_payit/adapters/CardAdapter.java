@@ -3,7 +3,6 @@ package lpadron.me.project1_payit.adapters;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,21 +13,16 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 
-import org.w3c.dom.Text;
-
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
-import java.util.jar.Manifest;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 import lpadron.me.project1_payit.R;
 import lpadron.me.project1_payit.controllers.MainActivity;
-import lpadron.me.project1_payit.helpers.ItemTouchHelperAdapter;
-import lpadron.me.project1_payit.helpers.OnCardRemindersDataChanged;
+import lpadron.me.project1_payit.helpers.interfaces.ItemTouchHelperAdapter;
+import lpadron.me.project1_payit.helpers.interfaces.OnCardRemindersDataChanged;
 import lpadron.me.project1_payit.models.CardReminder;
 
 /**

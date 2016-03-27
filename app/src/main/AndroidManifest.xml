@@ -26,9 +26,9 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".helpers.AlarmService"
+        <service android:name=".helpers.services.AlarmService"
             android:enabled="true" />
-        <receiver android:name=".controllers.AlarmBroadcastReceiver"/>
+        <receiver android:name=".helpers.services.AlarmBroadcastReceiver"/>
 
     </application>
 

@@ -1,4 +1,4 @@
-package lpadron.me.project1_payit.helpers;
+package lpadron.me.project1_payit.helpers.interfaces;
 
 import java.util.ArrayList;
 

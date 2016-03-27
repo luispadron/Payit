@@ -1,4 +1,4 @@
-package lpadron.me.project1_payit.helpers;
+package lpadron.me.project1_payit.helpers.services;
 
 import android.app.Notification;
 import android.app.NotificationManager;
