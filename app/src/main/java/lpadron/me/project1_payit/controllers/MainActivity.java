@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity
     private MainFragment mainFragment;
 
     public static final String CARD_REMINDERS = "CARD_REMINDERS";
-    public static final String CARD_REMINDER_PARCELABLE = "CARD_REMINDERS_PARCALABLE";
+    public static final String CARD_REMINDER_PARCELABLE = "CARD_REMINDERS_PARCELABLE";
     public static  boolean FIRST_TIME_RAN_NO_CARDS;
     private static final String FIRST_TIME_RAN_NO_CARDS_PREF = "FIRST_TIME_RAN_NO_CARDS";
 
