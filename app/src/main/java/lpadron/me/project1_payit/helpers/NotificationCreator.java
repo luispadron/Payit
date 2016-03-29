@@ -1,4 +1,4 @@
-package lpadron.me.project1_payit.models;
+package lpadron.me.project1_payit.helpers;
 
 import android.annotation.TargetApi;
 import android.app.AlarmManager;
@@ -11,6 +11,7 @@ import java.util.Calendar;
 
 import lpadron.me.project1_payit.controllers.MainActivity;
 import lpadron.me.project1_payit.helpers.services.AlarmBroadcastReceiver;
+import lpadron.me.project1_payit.models.CardReminder;
 
 /**
  * Payit

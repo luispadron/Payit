@@ -32,7 +32,7 @@ import lpadron.me.project1_payit.helpers.interfaces.OnNewCardAnimateOut;
 import lpadron.me.project1_payit.helpers.interfaces.OnPassCardReminder;
 import lpadron.me.project1_payit.helpers.interfaces.RecyclerViewUpdater;
 import lpadron.me.project1_payit.models.CardReminder;
-import lpadron.me.project1_payit.models.NotificationCreator;
+import lpadron.me.project1_payit.helpers.NotificationCreator;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnPassCardReminder,
@@ -173,6 +173,7 @@ public class MainActivity extends AppCompatActivity
     
     @OnClick(R.id.mainFab)
     public void mainFabOnClick(View v) {
+        // Create a new card
         beginNewCardFragment();
     }
 
@@ -203,7 +204,7 @@ public class MainActivity extends AppCompatActivity
         recyclerViewUpdater.onUpdateRecyclerViewNeeded(cardReminders);
         saveFirstTimeRanState();
 
-        // Create notification for card
+        // Create first notification for card
         NotificationCreator.createNotification(this, cardReminder);
     }
 

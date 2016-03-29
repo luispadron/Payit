@@ -52,6 +52,8 @@ public class CardReminder implements Parcelable {
     protected CardReminder(Parcel in) {
         cardName = in.readString();
         dueDay = in.readInt();
+        amntOnCard = in.readDouble();
+        interestRate = in.readDouble();
         monthsToPayOff = in.readInt();
         issuingBank = in.readString();
         generatedColor = in.readInt();
@@ -240,6 +242,8 @@ public class CardReminder implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(cardName);
         dest.writeInt(dueDay);
+        dest.writeDouble(amntOnCard);
+        dest.writeDouble(interestRate);
         dest.writeInt(monthsToPayOff);
         dest.writeString(issuingBank);
         dest.writeInt(generatedColor);

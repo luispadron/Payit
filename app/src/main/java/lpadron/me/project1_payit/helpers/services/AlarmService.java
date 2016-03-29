@@ -8,11 +8,15 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import lpadron.me.project1_payit.R;
 import lpadron.me.project1_payit.controllers.MainActivity;
 import lpadron.me.project1_payit.models.CardReminder;
-import lpadron.me.project1_payit.models.NotificationCreator;
+import lpadron.me.project1_payit.helpers.NotificationCreator;
 
 /**
  * Project1-Payit
@@ -34,16 +38,20 @@ public class AlarmService extends Service {
 
     private void displayNotification() {
         Intent resultIntent = new Intent(this.getApplicationContext(), MainActivity.class);
-
+        NumberFormat formatter = NumberFormat.getNumberInstance(Locale.US);
+        formatter.setGroupingUsed(true);
+        String contentText = String.format("Recommended payment amount $%s", formatter.format(cardReminder.amountToPay()));
         // Create the notification
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.bank_cards_100)
-                .setContentTitle("Payment due")
-                .setContentText("Payment due for " + cardReminder.getCardName())
-                .setTicker("Ok")
+                .setContentTitle("Payment due for: " + cardReminder.getCardName())
+                .setContentText(contentText)
+                .setTicker("Cool!")
                 .setDefaults(Notification.DEFAULT_ALL)
-                .setAutoCancel(true);
+                .setAutoCancel(true)
+                .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                .setCategory("Notification");
 
         PendingIntent resultPendingIntent =
                 PendingIntent.getActivity(this, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT);
