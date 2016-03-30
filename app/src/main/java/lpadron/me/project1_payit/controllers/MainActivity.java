@@ -1,5 +1,8 @@
 package lpadron.me.project1_payit.controllers;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -27,16 +30,18 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import lpadron.me.project1_payit.R;
+import lpadron.me.project1_payit.helpers.NotificationCreator;
 import lpadron.me.project1_payit.helpers.interfaces.OnCardRemindersDataChanged;
 import lpadron.me.project1_payit.helpers.interfaces.OnNewCardAnimateOut;
+import lpadron.me.project1_payit.helpers.interfaces.OnNotificationsNeedToBeCanceled;
 import lpadron.me.project1_payit.helpers.interfaces.OnPassCardReminder;
 import lpadron.me.project1_payit.helpers.interfaces.RecyclerViewUpdater;
+import lpadron.me.project1_payit.helpers.services.AlarmBroadcastReceiver;
 import lpadron.me.project1_payit.models.CardReminder;
-import lpadron.me.project1_payit.helpers.NotificationCreator;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnPassCardReminder,
-        OnNewCardAnimateOut, OnCardRemindersDataChanged {
+        OnNewCardAnimateOut, OnCardRemindersDataChanged, OnNotificationsNeedToBeCanceled {
 
     @Bind(R.id.toolbar) Toolbar toolbar;
     @Bind(R.id.nav_view) NavigationView navigationView;
@@ -203,8 +208,7 @@ public class MainActivity extends AppCompatActivity
         RecyclerViewUpdater recyclerViewUpdater = mainFragment;
         recyclerViewUpdater.onUpdateRecyclerViewNeeded(cardReminders);
         saveFirstTimeRanState();
-
-        // Create first notification for card
+        // Create notification for cards
         NotificationCreator.createNotification(this, cardReminder);
     }
 
@@ -234,5 +238,15 @@ public class MainActivity extends AppCompatActivity
         // load updated CardReminders
         cardReminders.clear();
         cardReminders.addAll(updatedReminders);
+    }
+
+    @Override
+    public void cancelUpcomingNotifications(int notificationID) {
+        Intent intent = new Intent(this, AlarmBroadcastReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, notificationID,
+                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        // Cancel upcoming alarm with the notificationID that was sent
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        alarmManager.cancel(pendingIntent);
     }
 }

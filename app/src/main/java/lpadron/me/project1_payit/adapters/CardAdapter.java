@@ -23,6 +23,7 @@ import lpadron.me.project1_payit.R;
 import lpadron.me.project1_payit.controllers.MainActivity;
 import lpadron.me.project1_payit.helpers.interfaces.ItemTouchHelperAdapter;
 import lpadron.me.project1_payit.helpers.interfaces.OnCardRemindersDataChanged;
+import lpadron.me.project1_payit.helpers.interfaces.OnNotificationsNeedToBeCanceled;
 import lpadron.me.project1_payit.models.CardReminder;
 
 /**
@@ -70,7 +71,12 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder
                     @Override
                     public void onClick(SweetAlertDialog sweetAlertDialog) {
                         // User said yes to delete
-                        // Remove reminder
+                        // Cancel any upcoming notifications
+                        OnNotificationsNeedToBeCanceled onNotificationsNeedToBeCanceled =
+                                (OnNotificationsNeedToBeCanceled) context;
+                        onNotificationsNeedToBeCanceled
+                                .cancelUpcomingNotifications(cardReminders.get(position).getNotificationID());
+                        // Remove this reminder from the array
                         cardReminders.remove(position);
                         notifyItemRemoved(position);
                         notifyItemChanged(position);

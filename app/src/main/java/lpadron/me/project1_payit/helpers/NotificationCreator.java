@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 
 import java.util.Calendar;
 
@@ -28,6 +29,7 @@ public class NotificationCreator {
         String[] split = cardReminder.getFullDateFromDayFormattedForNotification().split("/");
 
         // Set the date for the notification
+        calendar.clear();
         calendar.set(Calendar.MONTH, Integer.parseInt(split[0]) - 1);
         calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(split[1]));
         calendar.set(Calendar.YEAR, Integer.parseInt(split[2]));
@@ -36,9 +38,12 @@ public class NotificationCreator {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.AM_PM, Calendar.PM);
 
+        Log.d(NotificationCreator.class.getSimpleName(), calendar.getTime().toString());
+
         Intent intent = new Intent(context, AlarmBroadcastReceiver.class);
         intent.putExtra(MainActivity.CARD_REMINDER_PARCELABLE, cardReminder);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, cardReminder.getNotificationID(),
+                intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(MainActivity.ALARM_SERVICE);
         alarmManager.setExact(AlarmManager.RTC, calendar.getTimeInMillis(), pendingIntent);

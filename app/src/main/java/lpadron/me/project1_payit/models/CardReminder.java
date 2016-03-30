@@ -20,7 +20,7 @@ public class CardReminder implements Parcelable {
     private String issuingBank;
     private int generatedColor = -1;
     private int notificationID;
-    public static final int HOUR_FOR_NOTIFICATION = 17;
+    public static final int HOUR_FOR_NOTIFICATION = 14;
     public static final int MINUTE_FOR_NOTIFICATION = 30;
     // Super big ugly array of colors, one will be randomly chosen when object is created
     private static final int[] COLORS = {
