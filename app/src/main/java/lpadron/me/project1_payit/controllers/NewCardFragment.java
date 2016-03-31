@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -227,7 +228,7 @@ public class NewCardFragment extends Fragment
                 this.getView().startAnimation(shake);
                 // Set error message
                 cardNameEditText.setError("Invalid name");
-                cardNameEditText.setHighlightColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+                cardNameEditText.clearComposingText();
             } else {
                 cardNameEditText.setVisibility(View.GONE);
 
@@ -251,15 +252,31 @@ public class NewCardFragment extends Fragment
                 actionId == EditorInfo.IME_ACTION_DONE ||
                 key.getAction() == KeyEvent.ACTION_DOWN &&
                         key.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+
+            boolean invalidNum = false;
             // Set the card amount rate
-            amntOnCard = Double.parseDouble(cardAmountEditText.getText().toString());
+            try {
+                amntOnCard = Double.parseDouble(cardAmountEditText.getText().toString());
+            } catch (Exception e) {
+                Log.e(NewCardFragment.class.getSimpleName(), "Error parsing double");
+                e.printStackTrace();
+               invalidNum = true;
+            }
 
-            // Hide the keyboard and current view
-            hideKeyboard();
-            cardAmountEditText.setVisibility(View.GONE);
+            if (invalidNum) {
+                // Display error to the user, DON'T crash the app
+                Animation shake = AnimationUtils.loadAnimation(getContext(), R.anim.shake);
+                this.getView().startAnimation(shake);
+                cardAmountEditText.setError("Invalid card amount");
+                cardAmountEditText.clearComposingText();
+            } else {
+                // Hide the keyboard and current view
+                hideKeyboard();
+                cardAmountEditText.setVisibility(View.GONE);
 
-            // Make next view visible
-            monthsToPayEdit.setVisibility(View.VISIBLE);
+                // Make next view visible
+                monthsToPayEdit.setVisibility(View.VISIBLE);
+            }
         }
         return true;
     }
@@ -330,11 +347,6 @@ public class NewCardFragment extends Fragment
             public void onAnimationStart(Animation animation) {
                 // Currently animating
                 CURRENTLY_ANIMATING_OUT = true;
-
-                // Hide confirm button from view if visible
-                if (confirmButton.isShown()) {
-                    confirmButton.setVisibility(View.GONE);
-                }
             }
 
             @Override
