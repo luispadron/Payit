@@ -78,4 +78,22 @@
                 android:id="@+id/final_issuing_bank"/>
         </LinearLayout>
     </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/round_button_background"
+            android:elevation="8dp"
+            android:src="@drawable/ic_done_white_24dp"
+            android:scaleType="center"
+            android:visibility="gone"
+            android:id="@+id/final_confirm_card_button"/>
+    </FrameLayout>
 </RelativeLayout>

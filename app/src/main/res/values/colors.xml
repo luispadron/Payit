@@ -23,6 +23,7 @@
     <color name="half_black">#808080</color>
 
     <color name="dim_blur">#80FFFFFF</color>
+    <color name="full_transparent">#100FFFFF</color>
 
     <!-- Colors used for the card views, all grabbed from http://www.lolcolors.com/ -->
     <color name="color1">#ff7473</color>

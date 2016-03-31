@@ -1,166 +1,173 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".controllers.NewCardFragment"
-    android:background="@drawable/dialog_background"
+    android:background="@android:color/transparent"
     android:gravity="center"
     android:layout_marginTop="20dp"
     android:paddingBottom="15dp">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:id="@+id/card_linear_layout">
+        android:background="@drawable/dialog_background"
+        android:gravity="center"
+        android:paddingBottom="10dp">
 
-        <lpadron.me.project1_payit.views.RalewayTextView
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/white"
-            android:text="add a card"
-            android:textAllCaps="true"
-            android:letterSpacing=".1"
-            android:textSize="22sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:id="@+id/new_card_title"
-            android:textAlignment="center"
-            android:background="@color/colorPrimary"
-            android:elevation="2dp">
-        </lpadron.me.project1_payit.views.RalewayTextView>
+            android:layout_height="wrap_content"
+            android:id="@+id/card_linear_layout">
 
-        <ImageView
-            android:layout_marginTop="10dp"
+            <lpadron.me.project1_payit.views.RalewayTextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:text="add a card"
+                android:textAllCaps="true"
+                android:letterSpacing=".1"
+                android:textSize="22sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:id="@+id/new_card_title"
+                android:textAlignment="center"
+                android:background="@color/colorPrimary"
+                android:elevation="2dp">
+            </lpadron.me.project1_payit.views.RalewayTextView>
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="center"
+                android:src="@drawable/bank_cards_100"
+                android:layout_gravity="center"
+                android:id="@+id/new_card_icon"/>
+        </LinearLayout>
+
+        <!-- Edit text for card name -->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_height="wrap_content"
+            android:hint="Card name"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/card_linear_layout"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/card_name"
+            android:singleLine="true"
+            android:visibility="visible"
+            android:ellipsize="start"
+            android:gravity="center"/>
+
+        <!-- Input for due day -->
+        <lpadron.me.project1_payit.views.RalewayTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:scaleType="center"
-            android:src="@drawable/bank_cards_100"
-            android:layout_gravity="center"
-            android:id="@+id/new_card_icon"/>
-    </LinearLayout>
+            android:layout_below="@+id/card_linear_layout"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/colorSecondaryText"
+            android:text="Due day for card"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:id="@+id/spinner_prompt" />
 
-    <!-- Edit text for card name -->
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_height="wrap_content"
-        android:hint="Card name"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/card_linear_layout"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/card_name"
-        android:singleLine="true"
-        android:visibility="visible"
-        android:ellipsize="start"
-        android:gravity="center"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinner_prompt"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:minWidth="100dp"
+            android:id="@+id/due_day_spinner"
+            android:visibility="gone"
+            android:dropDownWidth="100dp"
+            android:gravity="center">
+        </Spinner>
 
-    <!-- Input for due day -->
-    <lpadron.me.project1_payit.views.RalewayTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/card_linear_layout"
-        android:textSize="15sp"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/colorSecondaryText"
-        android:text="Due day for card"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone"
-        android:id="@+id/spinner_prompt" />
+        <!-- Input for amount on card -->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Amount on card"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/card_linear_layout"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/card_amount"
+            android:inputType="numberDecimal"
+            android:singleLine="true"
+            android:visibility="gone"
+            android:ellipsize="start"
+            android:gravity="center"/>
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/spinner_prompt"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:minWidth="100dp"
-        android:id="@+id/due_day_spinner"
-        android:visibility="gone"
-        android:dropDownWidth="100dp"
-        android:gravity="center">
-    </Spinner>
+        <!-- Input for months to pay off card -->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Months to pay off card"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/card_linear_layout"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/months_to_pay_off_edit_text"
+            android:inputType="number"
+            android:singleLine="true"
+            android:visibility="gone"
+            android:ellipsize="start"
+            android:gravity="center"/>
 
-    <!-- Input for amount on card -->
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Amount on card"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/card_linear_layout"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/card_amount"
-        android:inputType="numberDecimal"
-        android:singleLine="true"
-        android:visibility="gone"
-        android:ellipsize="start"
-        android:gravity="center"/>
+        <!-- Input for interest rate -->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Interest rate"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/card_linear_layout"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/card_interest"
+            android:inputType="numberDecimal"
+            android:singleLine="true"
+            android:visibility="gone"
+            android:ellipsize="start"
+            android:gravity="center"/>
 
-    <!-- Input for months to pay off card -->
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Months to pay off card"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/card_linear_layout"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/months_to_pay_off_edit_text"
-        android:inputType="number"
-        android:singleLine="true"
-        android:visibility="gone"
-        android:ellipsize="start"
-        android:gravity="center"/>
+        <!-- Input for card company -->
+        <lpadron.me.project1_payit.views.RalewayTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_linear_layout"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/colorSecondaryText"
+            android:text="Issuing bank"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:id="@+id/spinner_prompt_company"/>
 
-    <!-- Input for interest rate -->
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Interest rate"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/card_linear_layout"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/card_interest"
-        android:inputType="numberDecimal"
-        android:singleLine="true"
-        android:visibility="gone"
-        android:ellipsize="start"
-        android:gravity="center"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinner_prompt_company"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:id="@+id/card_company_spinner"
+            android:visibility="gone"
+            android:dropDownWidth="200dp"
+            android:gravity="center">
+        </Spinner>
 
-    <!-- Input for card company -->
-    <lpadron.me.project1_payit.views.RalewayTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/card_linear_layout"
-        android:textSize="15sp"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/colorSecondaryText"
-        android:text="Issuing bank"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone"
-        android:id="@+id/spinner_prompt_company"/>
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/spinner_prompt_company"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:id="@+id/card_company_spinner"
-        android:visibility="gone"
-        android:dropDownWidth="200dp"
-        android:gravity="center">
-    </Spinner>
-
-    <!-- Layout for confirm new card -->
-    <include layout="@layout/final_card_layout"></include>
-
+        <!-- Layout for confirm new card -->
+        <include layout="@layout/final_card_layout"></include>
+    </RelativeLayout>
 </RelativeLayout>

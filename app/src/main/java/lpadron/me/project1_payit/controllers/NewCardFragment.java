@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -104,10 +105,6 @@ public class NewCardFragment extends Fragment
         cardCompanySpinner.setAdapter(companyAdapter);
         cardCompanySpinner.setOnItemSelectedListener(this);
 
-        // Get the parent FrameLayout to setup the confirm button from it
-        View frameLayout = getActivity().findViewById(R.id.card_fragment_container);
-        confirmButton = (ImageButton) frameLayout.findViewById(R.id.final_confirm_card_button);
-
 
         RecyclerView recyclerView = (RecyclerView) getActivity().findViewById(R.id.card_recycler_view);
         recyclerView.setOnTouchListener(new OnTouchListener() {
@@ -185,6 +182,7 @@ public class NewCardFragment extends Fragment
 
     private void setupFinalConfirmCardView() {
         finalCardLayout.setVisibility(View.VISIBLE);
+        confirmButton = (ImageButton) finalCardLayout.findViewById(R.id.final_confirm_card_button);
         confirmButton.setVisibility(View.VISIBLE);
 
         final TextView finalCardName = (TextView) finalCardLayout.findViewById(R.id.final_card_name);
@@ -220,17 +218,29 @@ public class NewCardFragment extends Fragment
                 key.getAction() == KeyEvent.ACTION_DOWN &&
                         key.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
             // User done typing the card name, hide view, prepare to show next view
-            cardNameEditText.setVisibility(View.GONE);
 
-            // Set card name
-            cardName = cardNameEditText.getText().toString();
+            if (cardNameEditText.getText().toString().isEmpty() ||
+                    cardNameEditText.getText().toString().matches("[0-9]+") ||
+                    cardNameEditText.getText().toString().trim().length() <= 0) {
+                // Start error animation
+                Animation shake = AnimationUtils.loadAnimation(getContext(), R.anim.shake);
+                this.getView().startAnimation(shake);
+                // Set error message
+                cardNameEditText.setError("Invalid name");
+                cardNameEditText.setHighlightColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
+            } else {
+                cardNameEditText.setVisibility(View.GONE);
 
-            // Hide the keyboard
-            hideKeyboard();
+                // Set card name
+                cardName = cardNameEditText.getText().toString();
 
-            // Make other view visible
-            spinnerPrompt.setVisibility(View.VISIBLE);
-            daySpinner.setVisibility(View.VISIBLE);
+                // Hide the keyboard
+                hideKeyboard();
+
+                // Make other view visible
+                spinnerPrompt.setVisibility(View.VISIBLE);
+                daySpinner.setVisibility(View.VISIBLE);
+            }
         }
         return true;
     }
